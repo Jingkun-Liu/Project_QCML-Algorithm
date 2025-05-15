@@ -14,7 +14,7 @@ sigma = 10.0  # 经典Lorenz参数
 rho = 28.0    # 经典Lorenz参数
 beta = 8/3    # 经典Lorenz参数
 
-def generate_lorenz_system(T=1000, dt=0.01, sigma=10.0, rho=28.0, beta=8/3, x0=0.1, y0=0.1, z0=0.1):
+def generate_lorenz_system(T=1000, dt=0.01, sigma=10.0, rho=28.0, beta=8/3, x0=1, y0=1, z0=1):
     """
     生成Lorenz系统时间序列（使用欧拉法）
     参数：
