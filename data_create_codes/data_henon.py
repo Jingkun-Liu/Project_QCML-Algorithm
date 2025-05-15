@@ -12,7 +12,7 @@ T = 1000  # 总序列长度
 a = 1.4   # 经典Hénon参数
 b = 0.3   # 经典Hénon参数
 
-def generate_henon_map(T=1000, a=1.4, b=0.3, x0=0.1, y0=0.1):
+def generate_henon_map(T=1000, a=1.4, b=0.3, x0=0, y0=0):
     """
     生成Hénon映射时间序列
     参数：
