@@ -122,7 +122,7 @@ train_dataset = TensorDataset(X_train, y_train)
 batch_size = 32
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-# 贝叶斯优化（保持原代码不变）
+# 贝叶斯优化
 def bayesian_objective(alpha):
     alpha = max(0.0, min(1.0, alpha))
     model = HybridModel()
