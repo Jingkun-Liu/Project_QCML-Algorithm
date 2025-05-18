@@ -49,25 +49,19 @@ def compute_see(state, n_qubits):
     sees = []
     state = state / torch.norm(state + 1e-10)
     rho = torch.outer(state.conj(), state)
-    print("Density matrix rho:\n", rho)
     
     dims = [2] * n_qubits
     for i in range(n_qubits):
         rho_i = partial_trace(rho, dims, [i])
-        print(f"Qubit {i} reduced density matrix rho_i:\n", rho_i)
         eigenvalues = torch.linalg.eigvalsh(rho_i)
-        print(f"Qubit {i} eigenvalues:\n", eigenvalues)
         eigenvalues = torch.clamp(eigenvalues, min=0.0, max=1.0)
         eigenvalues_sum = torch.sum(eigenvalues)
-        print(f"Qubit {i} eigenvalues sum:", eigenvalues_sum)
         if eigenvalues_sum > 1e-10:
             eigenvalues = eigenvalues / eigenvalues_sum
         else:
             sees.append(0.0)
             continue
-        print(f"Qubit {i} normalized eigenvalues:\n", eigenvalues)
         see = -torch.sum(eigenvalues * torch.log2(eigenvalues + 1e-12))
-        print(f"Qubit {i} SEE before clamp:", see)
         see = torch.clamp(see, min=0.0, max=1.0)
         sees.append(see.item())
     
